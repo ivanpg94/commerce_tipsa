@@ -1,0 +1,85 @@
+<?php
+
+function commerce_tipsa_theme($existing, $type, $theme, $path)
+{
+  return [
+    'block--commerce-tipsa' => [
+      'variables' => [
+        'form' => [],
+      ],
+    ],
+  ];
+}
+
+function commerce_tipsa_page_attachments(array &$page)
+{
+
+  $page['#attached']['library'][] = 'commerce_tipsa/commerce_tipsa';
+}
+/*
+function commerce_tipsa_preprocess(&$variables)
+{
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $requestUri = $request->getRequestUri();
+  $complete = (substr($requestUri, -9));
+  $tipsa= '';
+
+  if ($complete == '/complete') {
+    $requestorder = \Drupal::service('request_stack')->getCurrentRequest();
+    $requestUri = $requestorder->getRequestUri();
+    $urlcut = explode("/complete", $requestUri);
+    $urlcut2 = explode("checkout/", $urlcut[0]);
+    $orderid = intval($urlcut2[1]);
+
+    $shippingid = \Drupal::entityTypeManager()->getStorage('commerce_order')
+      ->load($orderid)->shipments->entity->shipping_method->entity->shipping_method_id->value;
+    $shipping_method_storage = \Drupal::entityTypeManager()->getStorage('commerce_shipping_method');
+    $shipping_method = $shipping_method_storage->load($shippingid);
+    $shipping = $shipping_method->get('plugin')->getValue()[0]['target_plugin_id'];
+
+    if ($shipping == 'tipsa') {
+      $completaEnvio = \Drupal::service('commerce_tipsa.completaEnvio')->completa_Envio();
+    }
+  }
+
+  //mostrar o ocultar el boton action de la pagina de los pedidos
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $requestUri = $request->getRequestUri();
+  $check = strpos($requestUri, "/orders/");
+  //$check = preg_match("/orders/", $requestUri);
+  if($check !== false){
+  $orderadmincommerce = explode("orders/", $requestUri);
+  $orderadmincommerce = explode("?", $orderadmincommerce[1]);
+  $orderadmincommerce = $orderadmincommerce[0];
+
+
+  $database = \Drupal::database();
+  $query = $database->select('tipsa', 'm')
+    ->condition('pedido', $orderadmincommerce)
+    ->fields('m');
+
+  $data = $query->execute()->fetchAssoc();
+
+
+  $tipsa = 'no_esta_tipsa';
+  if ($data) {
+    if (!is_null($data['pedido'])) {
+      $tipsa = 'si_esta_tipsa';
+    }
+  }
+
+  }
+
+  //enviar variables a javascript
+  $variables['#attached']['library'][] = 'commerce_tipsa/commerce_tipsa';
+  $variables['#attached']['drupalSettings']['commerce_tipsa']['tipsa'] = $tipsa;
+}
+*/
+
+function commerce_tipsa_form_alter(&$form, &$form_state, $form_id)
+{
+  if ($form_id == 'generate_label_tipsa') {
+    $form['actions']['submit']['#attributes']['class'][] = 'SoapController';
+    $form['#attributes']['class'][] = 'SoapController';
+  }
+}

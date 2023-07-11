@@ -1,0 +1,5 @@
+commerce_tipsa.settings:
+  route_name: commerce_tipsa.settings
+  title: 'Commerce Tipsa'
+  description: 'Administer Commerce Tipsa'
+  parent: commerce.configuration

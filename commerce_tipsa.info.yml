@@ -1,0 +1,12 @@
+name: 'commerce Tipsa'
+description: 'Integrates Commerce Tipsa with Drupal Commerce.'
+type: module
+package: 'Commerce (contrib)'
+dependencies:
+  commerce: 'drupal:commerce'
+core: 8.x
+core_version_requirement: ^8 || ^9
+libraries:
+  - commerce_tipsa/commerce_tipsa
+
+

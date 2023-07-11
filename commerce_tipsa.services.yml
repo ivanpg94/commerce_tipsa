@@ -1,0 +1,17 @@
+services:
+  commerce_tipsa.iniciar_sesion:
+    class: Drupal\commerce_tipsa\iniciar_sesion
+    arguments: [ '@current_user' ]
+
+  commerce_tipsa.cons_Envio:
+    class: Drupal\commerce_tipsa\cons_Envio
+    arguments: [ '@current_user' ]
+
+  commerce_tipsa.graba_Envio:
+    class: Drupal\commerce_tipsa\graba_Envio
+    arguments: [ '@current_user' ]
+
+  commerce_tipsa.cons_Etiqueta:
+    class: Drupal\commerce_tipsa\consulta_Etiqueta
+    arguments: [ '@current_user' ]
+

@@ -1,0 +1,12 @@
+entity.commerce_order.generate_label_form:
+  route_name: entity.commerce_order.generate_label_form
+  title: 'Generar etiqueta Tipsa'
+  appears_on:
+    - entity.commerce_order.canonical
+  weight: -10
+  options:
+    attributes:
+      id:
+        - 'tipsa'
+      class:
+        - 'tipsa'

@@ -1,0 +1,27 @@
+commerce_tipsa.settings:
+  path: /admin/commerce/config/commerce_tipsa
+  defaults:
+    _title: 'Commerce Tipsa'
+    _form: \Drupal\commerce_tipsa\Form\CommerceTipsaForm
+  requirements:
+    _permission: 'Administer commerce Tipsa'
+
+entity.commerce_order.generate_label_form:
+  path: /admin/commerce/orders/{commerce_order}/generate_label
+  defaults:
+    _form: \Drupal\commerce_tipsa\Form\generatelabel
+    _title: 'Generar etiqueta Tipsa'
+  options:
+    parameters:
+      commerce_order:
+        type: 'entity:commerce_order'
+  requirements:
+    _permission: 'administer commerce_order'
+
+entity.commerce_order.prueba:
+  path: tipsa/checkout/{commerce_order}/complete
+  defaults:
+    _controller: \Drupal\commerce_tipsa\Controller\urltipsa::completado
+    _title: 'urltipsa'
+  requirements:
+    _permission: 'administer commerce_order'
